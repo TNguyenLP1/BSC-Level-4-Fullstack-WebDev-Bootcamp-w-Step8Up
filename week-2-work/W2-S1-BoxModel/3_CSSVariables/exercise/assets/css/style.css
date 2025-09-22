@@ -1,0 +1,107 @@
+/* Basic Page Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    /* Hardcoded white */
+    color: var(--text-color);
+    /* Hardcoded black */
+}
+
+/* Dark mode variables */
+.dark-mode {
+    --bg-color: #2e2e2e;
+    --text-color: #f1f1f1;
+    --table-border-color: #555555;
+    --header-bg-color: #444444;
+    --header-text-color: #ffffff;
+}
+
+/* Navigation Bar */
+nav {
+    background-color: var(--header-bg-color);
+    /* Hardcoded red */
+    padding: 15px;
+    text-align: center;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--header-text-color);
+    /* Hardcoded white */
+    font-weight: bold;
+}
+
+/* Header Section */
+header {
+    text-align: center;
+    background-color: var(--header-bg-color);
+    /* Hardcoded red */
+    color: var(--header-text-color);
+    /* Hardcoded white */
+    padding: 40px 0;
+}
+
+header h1 {
+    margin: 0;
+}
+
+.header-image {
+    width: 100%;
+    
+}
+
+/* Main Content */
+.content {
+    display: flex;
+    justify-content: space-around;
+    padding: 50px;
+    background-color: var(--bg-color);
+    /* Hardcoded white */
+}
+
+img {
+    max-height:fit-content;
+    width: 100%;
+    
+}
+
+.box {
+    width: 40%;
+    padding: 20px;
+    background-color: var(--bg-color);
+    /* Light red background */
+    border: 2px solid var(--b-color);
+    /* Hardcoded red border */
+    color: var(--b-color);
+    /* Hardcoded red text */
+    text-align: center;
+}
+
+.box h2 {
+    margin-top: 0;
+}
+
+.box p {
+    color: var(--text-color);
+    /* Hardcoded black text */
+}
+
+a.option {
+    color: var(--b-color);
+    /* Hardcoded red */
+    text-decoration: none;
+    width: 50%;
+}
