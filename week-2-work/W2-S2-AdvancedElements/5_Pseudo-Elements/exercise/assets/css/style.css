@@ -30,6 +30,18 @@ h1 {
     text-align: left;
 }
 
+.email-label::before {
+    content: "✉️";
+    color: #ccc;
+    font-size: 2rem;
+}
+
+.phone-label::before {
+    content: "📞";
+    color: black;
+    font-size: 2rem;
+}
+
 label {
     display: block;
     margin-bottom: 5px;

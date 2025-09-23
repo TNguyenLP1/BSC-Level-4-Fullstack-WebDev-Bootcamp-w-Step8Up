@@ -61,12 +61,41 @@ img {
 
 .product {
     background-color: white;
-    width: 200px;
+    width: 220px;
     padding: 20px;
     margin: 20px;
     text-align: center;
-    border: 2px solid black;
+    border: 2px solid lightgsteelblue;
     /* Old styling */
    
     /* Add New styling here */
 }
+
+.product {
+    box-shadow: 4px 4px 10px rgba(160, 160, 160, 0.4);
+    border-radius: 8px;
+}
+
+.scale-box:hover {
+    transform: scale(1.1);
+    /* Enlarge the box */
+    background-color: lightsteelblue;
+    border-radius: 8px;
+    border: 2px solid steelblue;
+    transition: transform 1s ease;
+    text-align: center;
+    /* Change color */
+}
+
+.button:hover{
+    transform: translate(15px, 15px);
+    align-items: center;
+    background-color: lightgoldenrodyellow;
+    border: 1.5px solid gold;
+    border-radius: 4px;
+    width: 80px;
+    padding: 5px;
+
+}
+
+

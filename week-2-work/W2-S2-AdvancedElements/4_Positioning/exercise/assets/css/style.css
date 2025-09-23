@@ -18,7 +18,7 @@ body {
     top: 0;
     background-color: #333;
     color: white;
-    padding: 10px 0;
+    padding: 5px 0;
 }
 
 .main-nav ul {
@@ -28,13 +28,25 @@ body {
 }
 
 .main-nav ul li {
-    margin: 0 15px;
+    margin: 0 10px;
 }
 
 .main-nav ul li a {
     color: white;
     text-decoration: none;
     font-weight: bold;
+}
+
+.sticky-box {
+    position: -webkit-sticky;
+    /* For Safari */
+    position: sticky;
+    top: 0;
+    background-color: #333;
+    padding: 2px;
+    border: 1px solid #333;
+    color: white;
+    text-align: center;
 }
 
 /* Header */
@@ -93,15 +105,22 @@ footer {
 
 /* Get in Touch (incorrect position) */
 .get-in-touch {
-    /* TODO need to fix this to bottom and right */
-
-    /* Incorrect position */
-    
+        position: static;
+    background-color: white;
+    text-align: right;
 }
+
+/* TODO need to fix this to bottom and right */
+/* Incorrect position */
 
 .get-in-touch img {
     width: 150px;
     height: auto;
+    margin: 20px;
+}
+
+.extra-space {
+    height: 50px;
 }
 
 /* TASK 1: Make the navigation sticky at the top */
