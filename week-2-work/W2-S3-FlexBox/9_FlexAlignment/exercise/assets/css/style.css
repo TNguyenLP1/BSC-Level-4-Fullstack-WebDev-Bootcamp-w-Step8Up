@@ -17,17 +17,23 @@ body {
     display: flex;
 
     /* TODO: what happens when we change this? */
+    /* It changes the direction of the flex items */
     flex-direction: row;
+    /* It changes the direction of the flex items */
     width: 80%;
     height: 300px;
     background-color: #ddd;
     border: 2px solid #ccc;
-
     /* Flexbox alignment properties */
+
     justify-content: space-around;
     /* TODO: flex-start, center, space-between */
+    /* Distributes space around items */
+
     align-items: center;
     /* TODO: flex-start, center, flex-end */
+    /* Aligns items vertically in the center */
+    
 }
 
 .box {

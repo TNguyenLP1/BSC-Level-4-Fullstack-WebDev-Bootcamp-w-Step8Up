@@ -17,11 +17,13 @@ header {
 .navbar {
     /* TODO: explain the purpose of the following properties */
     display: flex;
-
+    /* Enables flexbox layout */
     justify-content: center;
+    /* Centers items horizontally */
     background-color: #007BFF;
     padding: 10px;
 }
+/* Flexbox container for navigation links */
 
 .navbar a {
     color: white;
@@ -30,22 +32,33 @@ header {
     text-transform: uppercase;
     font-weight: bold;
 }
+/* Flexbox item for navigation links */
 
 .navbar a:hover {
     background-color: #0056b3;
 }
-
+/* Flexbox item for navigation links */
+.navbar a {
+    flex: 1;
+    /* Allows the link to grow and fill the available space */
+}
 /* Flexbox content area */
 .content {
     
     /* TODO: explain the purpose of the following properties */
     flex-wrap: wrap;
+    /* Allows flex items to wrap onto multiple lines */
     display: flex;
+    /* Enables flexbox layout */
 
     justify-content: space-around;
+    /* Distributes space between items */
     align-items: center;
+    /* Centers items vertically */
     margin: 20px auto;
+    /* Centers the content area */
     padding: 20px;
+    /* Adds padding inside the content area */
     background-color: white;
     max-width: 1200px;
 }
@@ -53,18 +66,27 @@ header {
 /* Flexbox items */
 .box {
     background-color: #28a745;
+    /* Sets the background color */
     color: white;
+    /* Sets the text color */
     padding: 20px;
+    /* Adds padding inside the box */
     margin: 10px;
+    /* Adds margin around the box */
     text-align: center;
+    /* Centers the text inside the box */
     border-radius: 5px;
+    /* Rounds the corners of the box */
 
     /* TODO: explain the purpose of the following properties */
     flex: 1 1 200px;
+    /* Flex-grow, flex-shrink, flex-basis */
 }
+
 
 .box:hover {
     background-color: #218838;
+    /* Darkens the box on hover */
 }
 
 /* Footer styling */
