@@ -11,109 +11,204 @@ body {
 }
 
 .dashboard-container {
+    /* Create a grid layout */
     display: grid;
+    /* Define display type */
     grid-template-columns: 250px 1fr;
+    /* Define grid template columns */
     grid-template-rows: auto 1fr;
+    /* Define grid template rows */
     grid-template-areas:
         "header header"
         "sidebar main";
+    /* Define grid template areas */
     height: 100vh;
+    /* Set height to 100% of the viewport height */
     gap: 10px;
+    /* Set gap between grid items */
 }
+
 
 /* Header */
 .header {
+    /* Define grid area for header */
     grid-area: header;
+    /* Set background color */
     background-color: #4CAF50;
+    /* Set display type */
     display: flex;
+    /* Align items */
     justify-content: space-between;
+    /* Center items vertically */
     align-items: center;
+    /* Add padding */
     padding: 20px;
+    /* Set text color */
     color: white;
+
 }
 
 .search-bar {
+    /* Add styles for the search bar */
     padding: 10px;
+    /* Add border radius */
     font-size: 1rem;
+    /* Set width */
     width: 60%;
 }
 
 .user-avatar img {
+    /* Set width and height */
     width: 50px;
+    /* Set height */
     height: 50px;
+    /* Set border radius */
     border-radius: 50%;
 }
 
 /* Sidebar */
 .sidebar {
+    /* Define grid area for sidebar */
     grid-area: sidebar;
+    /* Set background color */
     background-color: #333;
+    /* Set text color */
     color: white;
+    /* Add padding */
     padding: 20px;
 }
 
 .sidebar nav ul {
+    /* Remove default list styling */
     list-style-type: none;
 }
+/* Sidebar Navigation */
 
 .sidebar nav ul li {
+    /* Add margin */
     margin-bottom: 15px;
 }
+/* Sidebar Navigation */
 
 .sidebar nav ul li a {
+    /* Set text color */
     color: white;
+    /* Set hover effect */
     text-decoration: none;
+    /* Set font size */
     font-size: 1.1rem;
 }
+/* Sidebar Navigation */
 
 .sidebar nav ul li a:hover {
+    /* Set text decoration on hover */
     text-decoration: underline;
 }
+/* Sidebar Navigation */
 
 /* Main Content */
 .main-content {
+        /* Define grid area for main content */
     grid-area: main;
+    /* Set background color */
     background-color: #fff;
+    /* Add padding */
     padding: 20px;
+    /* Enable vertical scrolling if content overflows */
     overflow-y: auto;
+    /* Add box shadow for depth */
 }
 
 .main-content h2 {
+    /* Add margin to the bottom of headings */
     margin-bottom: 20px;
+    
 }
 
 /* Task Table */
 .task-table {
+    /* Set width */
     width: 100%;
+    /* Set border collapse */
     border-collapse: collapse;
+    /* Add margin to the bottom */
     margin-bottom: 20px;
 }
 
 .task-table thead {
+    /* Set background color for table header */
     background-color: #f4f4f4;
+    /* Add padding */
 }
 
 .task-table th,
 .task-table td {
+    /* Add padding */
     padding: 12px;
+    /* Add border */
     border: 1px solid #ddd;
+    /* Align text to the left */
     text-align: left;
 }
 
 .task-table th {
+    /* Set background color for table header */
     background-color: #333;
+    /* Set padding */
+    padding: 12px;
+    /* Set text color */
     color: white;
 }
 
 .complete-btn {
+    /* Style for complete button */
     background-color: #4CAF50;
+    /* Set hover effect */
     color: white;
+    /* Add padding */
     padding: 8px 12px;
+    /* Remove border */
     border: none;
+    /* Set cursor */
     cursor: pointer;
+    /* Add border radius */
     border-radius: 4px;
 }
 
 .complete-btn:hover {
+    /* Change background color on hover */
     background-color: #45a049;
+    
 }
+
+@media screen and (max-width: 768px) {
+    .dashboard-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        grid-template-areas:
+            "dashboard-container"
+            "header"
+            "user-avatar"
+            "sidebar"
+            "main"
+            "search-bar"
+            "task-table";
+    }
+    .sidebar {
+        display: flex;
+    }
+
+    .sidebar nav ul {
+        display: inline-block;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        overflow-x: auto;
+    }
+
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    /* Make table responsive */
+}
+
