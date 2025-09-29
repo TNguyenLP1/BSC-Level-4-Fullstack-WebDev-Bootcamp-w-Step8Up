@@ -5,6 +5,7 @@ body {
     padding: 0;
     background-color: #f4f4f4;
 }
+/* Reset default margin and padding for all elements */
 
 header, footer {
     background-color: #2A2E2C;
@@ -12,12 +13,14 @@ header, footer {
     text-align: center;
     padding: 20px 0;
 }
+/* Reset default margin and padding for all elements */
 
 header h1 {
     /* Add margin to the top and bottom of the heading */
     margin: 0.5em 0;
     font-style: italic;
 }
+/* Reset default margin and padding for all elements */
 
 nav ul {
     list-style: none;
@@ -26,6 +29,7 @@ nav ul {
     display: flex;
     justify-content: center;
 }
+/* Reset default margin and padding for all elements */
 
 nav ul li {
     margin: 0 15px;
@@ -104,29 +108,38 @@ button {
 
 /* TODO: describe what each of these rules do */
 @media screen and (min-width: 768px) {
+    /* Apply styles for screens larger than 768px */
+
     .products {
         padding: 40px;
     }
+    /* set padding to 40px */
 
     .product {
         width: 300px;
     }
+    /* set width to 300px */
 
     .banner {
         display: block;
     }
+    /* display the banner in block */
 
     #mobile-menu {
         display: none;
     }
+    /* hide the mobile menu */
 
     #desktop-menu {
         display: block;
     }
+    /* display the desktop menu */
 }
 
 @media (orientation: landscape) {
+    /* Apply styles for landscape orientation */
     body {
         background-color: #ac8a04;
     }
+    /* set background color to #ac8a04 */
 }
