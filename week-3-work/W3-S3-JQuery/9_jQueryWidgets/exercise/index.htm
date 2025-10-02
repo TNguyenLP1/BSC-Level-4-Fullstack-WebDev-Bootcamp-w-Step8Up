@@ -11,6 +11,12 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
+    <link
+    rel="stylesheet"
+    href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -70,6 +76,33 @@
             $("#autocomplete").autocomplete({
                 source: availableFruits
             });
+        });
+    </script>
+
+    <h3>Accordion Widget</h3>
+    <div id="accordion">
+        <h3>Section 1</h3>
+        <div>
+            <p>Content for section 1.</p>
+        </div>
+
+        <h3>Section 2</h3>
+        <div>
+            <p>Content for section 2.</p>
+        </div>
+    </div>
+
+    <h3>Select a Date</h3>
+        <input type="text" id="datepicker" />
+
+    <script>
+
+        $(function() {
+            // Initialize Accordion
+                $("#accordion").accordion();
+
+            // Initialize Datepicker
+                $("#datepicker").datepicker();
         });
     </script>
 

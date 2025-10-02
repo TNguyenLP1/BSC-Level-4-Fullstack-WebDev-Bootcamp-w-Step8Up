@@ -6,11 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>jQuery CSS Manipulation</title>
     <link rel="stylesheet" href="./assets/css/style.css">
-    <!-- TODO: Add in the jQuery script  -->>
+    <!-- TODO: Add in the jQuery script  -->
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> </script>
 
 </head>
 
@@ -49,16 +51,19 @@
             
             
             $('#box2').click(function () {
-                $('#box2').css('color', 'red');
+                $('#box2').css('font-size', 'large');
             });
 
-            $('#box2').click(function () {
-                $('#box2').css('color', 'red');
+            $('#box3').click(function () {
+                $('#box3').css('background-color', 'pink');
             });
 
             // TODO: Change background color for the third box
 
             // TODO: Italicize text for all the text elements
+            $('#box4').click(function () {
+                $('body').css('font-style', 'italic');
+            });
 
 
         });
