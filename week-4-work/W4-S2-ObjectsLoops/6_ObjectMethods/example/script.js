@@ -3,7 +3,7 @@ var car = {
   model: "Camry",
   year: 2020,
   getPrice: function () {
-    return 20000;
+    return this.make + " " + this.model + "cost $20,000";
   },
 };
 
