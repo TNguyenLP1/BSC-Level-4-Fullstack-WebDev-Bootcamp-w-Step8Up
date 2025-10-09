@@ -8,14 +8,28 @@ var searchButton = document.getElementById("searchButton");
 searchButton.addEventListener("click", onClickSearhButton);
 
 function onClickSearhButton() {
-  // 4. use the value property of the searchInput to get the search term
-  //TODO:
-  // 5. select the searches div using document.getElementById
-  //TODO:
-  // 6. create a new li element using document.createElement
-  //TODO:
-  // 7. set the innerHTML of the new paragraph to the search term
-  //TODO:
-  // 8. append the new paragraph to the searches div
-  //TODO:
+    // 4. use the value property of the searchInput to get the search term
+    var searchTermValue = searchTerm.value; // Get the value from the input field
+    
+    if (searchTermValue.trim() === "") {
+        return; 
+        // Don't proceed if the search term is empty
+    }
+
+    // 5. select the searches div using document.getElementById
+    var searchesList = document.getElementById("searches");
+
+    // 6. create a new li element using document.createElement
+    var newSearchItem = document.createElement("li");
+
+    // 7. set the innerHTML of the new li element to the search term
+    newSearchItem.innerHTML = searchTermValue; 
+    // Assign the search term as the content
+
+    // 8. append the new li element to the searches div (actually to the <ul> element)
+    searchesList.appendChild(newSearchItem);
+
+    // Optionally, clear the input field after adding the search term
+    searchTerm.value = ""; 
+    // Clear the input field
 }
