@@ -86,3 +86,99 @@ Compare your results and reflect on:
 ---
 
 Would you like additional resources for real-world projects, debugging techniques, or best practices? 🚀
+
+Comparison of the HTTP Request Methods
+
+Here’s a breakdown of each method, their syntax, error handling, and the pros/cons for each.
+
+1. Fetch API
+
+Syntax: fetch(url).then(response => response.json()).then(data => console.log(data)).catch(error => console.error(error));
+
+Error Handling: Errors are caught using .catch(). However, Fetch does not reject HTTP error statuses (e.g., 404, 500). It only rejects on network failure.
+
+Pros:
+
+Simple and modern.
+
+Promise-based, making it easy to work with async code.
+
+Native to modern browsers.
+
+Cons:
+
+No built-in support for older browsers (e.g., IE).
+
+Doesn't automatically reject HTTP errors.
+
+2. Axios
+
+Syntax: axios.get(url).then(response => console.log(response.data)).catch(error => console.error(error));
+
+Error Handling: Axios automatically rejects on HTTP error statuses and has built-in error handling.
+
+Pros:
+
+Simple and clean syntax.
+
+Supports older browsers.
+
+Automatically handles HTTP error statuses.
+
+Built-in features like request and response interceptors.
+
+Cons:
+
+Larger file size compared to Fetch.
+
+Extra dependency to include.
+
+3. jQuery AJAX
+
+Syntax: $.ajax({ url: 'url', method: 'GET', success: function(data) { console.log(data); }, error: function(error) { console.error(error); } });
+
+Error Handling: jQuery’s error callback function is used to handle errors.
+
+Pros:
+
+Works across all browsers, including old ones.
+
+Flexible and highly configurable.
+
+Cons:
+
+Adds an extra dependency (jQuery).
+
+Older syntax, not as modern as Fetch or Axios.
+
+Less clean than Fetch or Axios for simple use cases.
+
+4. XMLHttpRequest (XHR)
+
+Syntax: let xhr = new XMLHttpRequest(); xhr.open("GET", url, true); xhr.onload = function() { if (xhr.status === 200) { console.log(xhr.responseText); } }; xhr.send();
+
+Error Handling: Errors must be manually checked by inspecting the status property.
+
+Pros:
+
+Very flexible and powerful, but also verbose.
+
+Supported by all browsers.
+
+Cons:
+
+Very complex and verbose compared to Fetch or Axios.
+
+Callback-based, which makes it harder to handle asynchronous operations (no promises).
+
+Observations
+
+Readability: Fetch and Axios are the easiest to read and maintain, especially with the use of promises. XMLHttpRequest (XHR) and jQuery are more verbose and require callbacks.
+
+Error Handling: Axios has the best built-in error handling as it automatically rejects on non-2xx responses. Fetch requires manual error handling for HTTP errors. XMLHttpRequest also requires checking status codes manually. jQuery’s .ajax() has its own error handler.
+
+Use Case:
+
+For modern web apps, Fetch or Axios are preferred due to their simplicity and modern features.
+
+jQuery and XMLHttpRequest are more suitable for legacy projects where backward compatibility with older browsers is required.

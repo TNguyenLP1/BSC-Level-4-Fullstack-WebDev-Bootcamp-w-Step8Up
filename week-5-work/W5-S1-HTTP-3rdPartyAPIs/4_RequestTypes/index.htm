@@ -4,21 +4,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HTTP Requests</title>
+    <title>GitHub Repositories Fetcher</title>
     <link rel="stylesheet" href="./assets/css/style.css">
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- Add Axios CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- Add jQuery CDN -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
-    
-    <h1>HTTP Request Types</h1>
-    <p>Open the Console to see the results</p>
+    <h1>GitHub Repositories Fetcher</h1>
+    <p>Enter a GitHub username and click a button to fetch the repositories using different request types.</p>
+
+    <label for="username">Enter GitHub Username:</label>
+    <input type="text" id="username" placeholder="GitHub username" required>
     <div class="request-types">
-        <button id="fetch">Fetch</button>
-        <button id="axios">Axios</button>
-        <button id="xhr">XHR</button>
-        <button id="ajax">AJAX</button>
+        <button id="fetch">Fetch Request</button>
+        <button id="axios">Axios Request</button>
+        <button id="xhr">XHR Request</button>
+        <button id="ajax">AJAX Request</button>
+    </div>
+
+    <div id="response-container" class="response-container">
+        <h2>Repositories:</h2>
+        <pre id="response-output">Enter a GitHub username and click a request type to see results.</pre>
     </div>
 
     <script src="./assets/js/script.js"></script>
