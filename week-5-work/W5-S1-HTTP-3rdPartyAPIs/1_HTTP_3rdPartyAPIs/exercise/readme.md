@@ -57,4 +57,3 @@ As a developer, I want to use Postman to make HTTP GET requests to a 3rd party A
 - [Postman Learning Center](https://learning.postman.com/docs/getting-started/introduction/)
 
 
-<!-- Github Token - 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 -->
