@@ -1,0 +1,5 @@
+budget.xlsx
+code.py
+family_photo.jpg
+project_notes.txt
+resume.pdf
