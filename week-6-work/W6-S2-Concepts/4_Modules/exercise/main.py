@@ -1,28 +1,6 @@
-def add(a, b):
-    return a + b
-
-
-def subtract(a, b):
-    return a - b
-
-
-def uppercase(text):
-    return text.upper()
-
-
-def lowercase(text):
-    return text.lower()
-
-
-def read_file(filename):
-    with open(filename, "r") as file:
-        return file.read()
-
-
-def write_file(filename, content):
-    with open(filename, "w") as file:
-        file.write(content)
-
+from math_utils import add, subtract
+from string_utils import uppercase, lowercase
+from file_utils import read_file, write_file
 
 if __name__ == "__main__":
     # Math operations
