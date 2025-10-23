@@ -63,3 +63,18 @@ print("\nText File Content:\n", txt_content)
 
 # Convert Text to PDF
 text_to_pdf(txt_content, output_pdf)
+
+# Add confirmation message after reading PDF
+pdf_text = read_pdf(pdf_path)
+if "Error" not in pdf_text:
+    print("PDF read successfully!\n", pdf_text)
+else:
+    print(pdf_text)
+
+# Loop for multiple conversions
+while True:
+    txt_path = input("Enter a text file path to convert to PDF (or 'q' to quit): ")
+    if txt_path.lower() == 'q':
+        break
+    output_pdf = input("Enter output PDF name: ")
+    text_to_pdf(read_text_file(txt_path), output_pdf)
