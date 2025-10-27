@@ -1,9 +1,9 @@
 // traditional
-function greet(name) {
-  var name = name || "Guest"; // Fallback if no argument is passed
+function greetTraditional(name) {
+  var name = name || "Guest";
   return "Hello, " + name;
 }
-console.log(greet()); // "Hello, Guest"
+console.log(greetTraditional()); // "Hello, Guest"
 
-const greet = (name = "Guest") => `Hello, ${name}`;
-console.log(greet()); // "Hello, Guest"
+const greetArrow = (name = "Guest") => `Hello, ${name}`;
+console.log(greetArrow()); // "Hello, Guest"

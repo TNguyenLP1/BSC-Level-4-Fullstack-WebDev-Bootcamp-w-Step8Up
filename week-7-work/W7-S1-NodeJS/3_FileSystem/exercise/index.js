@@ -1,49 +1,60 @@
+// index.js
 const fs = require("fs");
 const path = require("path");
 
-// Get the message from the command-line argument
 const message = process.argv[2];
 
-// Check if a message was provided
 if (!message) {
   console.log("Please provide a message as a command-line argument.");
-  process.exit(1); // Exit the process if no message is provided
+  process.exit(1);
 }
 
-const filePath = path.join(__dirname, "messages.json");
+const messagesFile = path.join(__dirname, "messages.json");
+const logFile = path.join(__dirname, "log.txt");
 
-// Read the contents of the file
-fs.readFile(filePath, "utf8", (err, data) => {
+// Read messages.json
+fs.readFile(messagesFile, "utf8", (err, data) => {
   if (err) {
-    console.error("Error reading the file:", err);
+    console.error("Error reading messages.json:", err);
     return;
   }
 
-  // TODO: convert JSON to object
-  const obj = JSON.parse(data);
+  let messages = [];
+  try {
+    messages = JSON.parse(data);
+  } catch (parseErr) {
+    console.error("Error parsing JSON:", parseErr);
+  }
 
-  // TODO: push the message to the object
-  obj.messages.push(message);
+  // Print full messages before appending the new one
+  console.log("Messages before adding new entry:");
+  console.log(JSON.stringify(messages, null, 2));
 
-  // TODO: convert object back to JSON so you can write it back to the file
-  const json = JSON.stringify(obj, null, 2);
+  // Append new message
+  messages.push(message);
+  const updatedJSON = JSON.stringify(messages, null, 2);
 
-  // Write the message to message.txt
-  fs.writeFile(filePath, json, (err) => {
+  // Write updated messages back to messages.json
+  fs.writeFile(messagesFile, updatedJSON, "utf8", (err) => {
     if (err) {
-      console.error("Error writing the messages to the file:", err);
+      console.error("Error writing messages.json:", err);
       return;
     }
-    console.log("Message written to message.txt successfully!");
 
-    // Read the contents of the file
-    fs.readFile(filePath, "utf8", (err, data) => {
+    console.log("Message added successfully!");
+
+    // Append log with timestamp
+    const timestamp = new Date().toLocaleString();
+    const logEntry = `[${timestamp}] Added message: "${message}". Total messages: ${messages.length}\n`;
+
+    fs.appendFile(logFile, logEntry, "utf8", (err) => {
       if (err) {
-        console.error("Error reading the file:", err);
+        console.error("Error writing to log file:", err);
         return;
       }
-      console.log("Content of messages.json:");
-      console.log(data);
+
+      console.log("Log updated:");
+      console.log(logEntry);
     });
   });
 });

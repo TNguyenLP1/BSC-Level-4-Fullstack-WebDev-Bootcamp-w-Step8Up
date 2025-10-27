@@ -1,1 +1,11 @@
-["hello","world","hello","hello world"]
+[
+  "hello",
+  "world",
+  "hello",
+  "hello world",
+  "testing 1, 2, 3",
+  "update correctly working - append ok",
+  "update logging entry with time",
+  "update logging entry with time, date, and make sure previous text is printed in terminal",
+  "update - print before entry"
+]
