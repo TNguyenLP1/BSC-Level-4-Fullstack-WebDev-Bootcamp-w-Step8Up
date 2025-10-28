@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "figlet": "^1.9.3"
+  },
+  
+  "scripts": {
+    "start": "node index.js"
+  }
+}
