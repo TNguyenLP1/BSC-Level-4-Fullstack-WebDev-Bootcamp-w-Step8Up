@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "inquirer": "^8.2.7"
+  },
+
+  "scripts": {
+  "test": "jest"
+}
+}
