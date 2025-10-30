@@ -8,12 +8,14 @@ const { v4: uuidv4 } = require("uuid");
 const app = express();
 
 // Define the port the server will listen on
-const PORT = 3001;
+const PORT = 3000; // Change to 3000 per instructions
 
 // Middleware to parse incoming JSON requests
 app.use(express.json());
 
-// TODO:  Serve static files from the 'public' directory
+// Serve static files from the 'public' directory
+const publicPath = path.join(__dirname, "public");
+app.use(express.static(publicPath));
 
 // Define the path to the JSON file
 const dataFilePath = path.join(__dirname, "data.json");
@@ -32,7 +34,10 @@ const writeData = (data) => {
   fs.writeFileSync(dataFilePath, JSON.stringify(data, null, 2));
 };
 
-// TODO: Handle GET request at the root route
+// Handle GET request at the root route — serve index.html
+app.get("/", (req, res) => {
+  res.sendFile(path.join(publicPath, "index.htm"));
+});
 
 // Handle GET request to retrieve stored data
 app.get("/data", (req, res) => {

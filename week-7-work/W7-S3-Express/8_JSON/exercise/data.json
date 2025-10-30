@@ -1,1 +1,32 @@
-[]
+[
+  {
+    "id": "34f5366b-c09c-48c6-bd7b-6c7db35cd3f5",
+    "name": "Tri",
+    "role": "Officer",
+    "age": "25"
+  },
+  {
+    "id": "4e72c65c-5cd8-4f0d-baf2-b7eed5636b13",
+    "name": "Nguyen",
+    "role": "Private",
+    "age": "30"
+  },
+  {
+    "id": "8f12807e-c6e8-426a-94cb-708b880862b1",
+    "name": "QE2",
+    "role": "Dead",
+    "age": "94"
+  },
+  {
+    "id": "25fd0e09-90a8-4563-8f54-929c71094b62",
+    "name": "WW5",
+    "role": "prince",
+    "age": "75"
+  },
+  {
+    "id": "236d1cc1-db16-44b0-8ba6-973820787513",
+    "name": "KC3",
+    "role": "King",
+    "age": "78"
+  }
+]

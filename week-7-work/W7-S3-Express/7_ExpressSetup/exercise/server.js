@@ -21,6 +21,11 @@ app.post("/echo", (req, res) => {
   res.json({ received: req.body });
 });
 
+// Get echo
+app.get("/echo", (req, res) => {
+  res.json({"message": "This is a GET request to /echo"});
+})
+
 // Wildcard route to handle undefined routes
 app.all("*", (req, res) => {
   res.status(404).send("Route not found");

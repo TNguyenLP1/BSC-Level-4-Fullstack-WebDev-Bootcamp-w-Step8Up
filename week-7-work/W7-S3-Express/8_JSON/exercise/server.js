@@ -8,7 +8,7 @@ const { v4: uuidv4 } = require("uuid");
 const app = express();
 
 // Define the port the server will listen on
-const PORT = 3001;
+const PORT = 3002;
 
 // Middleware to parse incoming JSON requests
 app.use(express.json());
@@ -43,11 +43,23 @@ app.get("/data", (req, res) => {
 
 // Handle POST request to save new data with a unique ID
 app.post("/data", (req, res) => {
-  const newData = { id: uuidv4(), ...req.body };
+  const body = req.body;
+
+  // Basic validation: ensure body is not empty and has required fields
+  if (!body || Object.keys(body).length === 0) {
+    return res.status(400).json({ message: "Request body cannot be empty" });
+  }
+
+  // Optional: Require certain fields (customize this to your needs)
+  if (!body.name) {
+    return res.status(400).json({ message: "Missing required field: name" });
+  }
+
+  const newData = { id: uuidv4(), ...body };
   const currentData = readData();
   currentData.push(newData);
   writeData(currentData);
-  res.json({ message: "Data saved successfully", data: newData });
+  res.status(201).json({ message: "Data saved successfully", data: newData });
 });
 
 // Handle GET request to retrieve data by ID
@@ -60,9 +72,45 @@ app.get("/data/:id", (req, res) => {
   res.json(item);
 });
 
-// TODO: Handle PUT request to update data by ID
+// Handle PUT request to update data by ID
+app.put("/data/:id", (req, res) => {
+  const data = readData();
+  const id = req.params.id;
+  const body = req.body;
 
-// TODO: Handle DELETE request to delete data by ID
+  // Validate: ensure body isn’t empty
+  if (!body || Object.keys(body).length === 0) {
+    return res.status(400).json({ message: "Request body cannot be empty" });
+  }
+
+  const index = data.findIndex((item) => item.id === id);
+  if (index === -1) {
+    return res.status(404).json({ message: "Data not found" });
+  }
+
+  // Prevent changing the ID
+  delete body.id;
+
+  // Merge and save
+  data[index] = { ...data[index], ...body };
+  writeData(data);
+
+  res.json({ message: "Data updated successfully", data: data[index] });
+});
+
+// Handle DELETE request to delete data by ID
+app.delete("/data/:id", (req, res) => {
+  const data = readData();
+  const id = req.params.id;
+  const filteredData = data.filter((item) => item.id !== id);
+
+  if (filteredData.length === data.length) {
+    return res.status(404).json({ message: "Data not found" });
+  }
+
+  writeData(filteredData);
+  res.json({ message: "Data deleted successfully" });
+});
 
 // Handle POST request at the /echo route
 app.post("/echo", (req, res) => {
@@ -73,6 +121,12 @@ app.post("/echo", (req, res) => {
 // Wildcard route to handle undefined routes
 app.all("*", (req, res) => {
   res.status(404).send("Route not found");
+});
+
+// Global error handler (optional but helpful)
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ message: "Internal Server Error" });
 });
 
 // Start the server and listen on the specified port

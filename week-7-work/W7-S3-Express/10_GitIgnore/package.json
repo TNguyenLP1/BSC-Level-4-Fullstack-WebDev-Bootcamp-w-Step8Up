@@ -1,0 +1,15 @@
+{
+  "name": "10_gitignore",
+  "version": "1.0.0",
+  "description": "In this exercise, you will create a simple Node.js application that includes a `node_modules` folder after installing dependencies with **NPM**. Since it’s considered bad practice to include the `node_modules` folder in a GitHub repository, your task is to create a `.gitignore` file to exclude it from being tracked.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
