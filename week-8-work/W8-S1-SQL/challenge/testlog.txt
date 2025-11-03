@@ -1,0 +1,141 @@
+mysql> INSERT INTO customers (customer_name, country)
+    -> VALUES
+    ->     ('Alice Johnson', 'USA'),
+    ->     ('Brian Smith', 'Canada'),
+    ->     ('Cynthia Lee', 'UK'),
+    ->     ('David Garcia', 'Australia'),
+    ->     ('Emma Martinez', 'Germany');
+Query OK, 5 rows affected (0.121 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+//Insert data //
+
+mysql> INSERT INTO orders (customer_id, order_date, order_value)
+    -> VALUES
+    ->     (1, '2024-11-01', 1425.00),  -- Order by Alice Johnson
+    ->     (2, '2024-11-02', 735.00),   -- Order by Brian Smith
+    ->     (3, '2024-11-03', 1200.00),  -- Order by Cynthia Lee
+    ->     (4, '2024-11-04', 350.00),   -- Order by David Garcia
+    ->     (5, '2024-11-05', 2000.00);  -- Order by Emma Martinez
+Query OK, 5 rows affected (0.086 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+//Insert data //
+
+mysql> INSERT INTO order_items (order_id, item_name, item_qty, item_value)
+    -> VALUES
+    ->     -- Items for Alice Johnson's order (order_id = 1)
+    ->     (1, 'Laptop', 1, 1200.00),
+    ->     (1, 'Wireless Mouse', 1, 50.00),
+    ->     (1, 'Laptop Bag', 1, 100.00),
+    ->     (1, 'USB-C Hub', 2, 75.00),
+    ->
+    ->     -- Items for Brian Smith's order (order_id = 2)
+    ->     (2, 'Monitor', 1, 500.00),
+    ->     (2, 'HDMI Cable', 2, 15.00),
+    ->     (2, 'Mechanical Keyboard', 1, 220.00),
+    ->
+    ->     -- Items for Cynthia Lee's order (order_id = 3)
+    ->     (3, 'Tablet', 1, 800.00),
+    ->     (3, 'Stylus', 1, 100.00),
+    ->     (3, 'Screen Protector', 1, 50.00),
+    ->     (3, 'Tablet Case', 1, 250.00),
+    ->
+    ->     -- Items for David Garcia's order (order_id = 4)
+    ->     (4, 'Headphones', 1, 300.00),
+    ->     (4, 'Charging Cable', 2, 50.00),
+    ->
+    ->     -- Items for Emma Martinez's order (order_id = 5)
+    ->     (5, 'Desktop Computer', 1, 1500.00),
+    ->     (5, 'Webcam', 1, 100.00),
+    ->     (5, 'External Hard Drive', 1, 300.00),
+    ->     (5, 'Keyboard and Mouse Combo', 1, 100.00);
+Query OK, 17 rows affected (0.093 sec)
+Records: 17  Duplicates: 0  Warnings: 0
+//Insert data //
+
+mysql> -- Verify data in the customers table
+Query OK, 0 rows affected (0.003 sec)
+
+mysql> SELECT * FROM customers;
++----+---------------+-----------+
+| id | customer_name | country   |
++----+---------------+-----------+
+|  1 | Alice Johnson | USA       |
+|  2 | Brian Smith   | Canada    |
+|  3 | Cynthia Lee   | UK        |
+|  4 | David Garcia  | Australia |
+|  5 | Emma Martinez | Germany   |
++----+---------------+-----------+
+5 rows in set (0.004 sec)
+// Output //
+
+mysql>
+mysql> -- Verify data in the orders table
+Query OK, 0 rows affected (0.002 sec)
+
+mysql> SELECT * FROM orders;
++----+-------------+------------+-------------+
+| id | customer_id | order_date | order_value |
++----+-------------+------------+-------------+
+|  1 |           1 | 2024-11-01 |     1425.00 |
+|  2 |           2 | 2024-11-02 |      735.00 |
+|  3 |           3 | 2024-11-03 |     1200.00 |
+|  4 |           4 | 2024-11-04 |      350.00 |
+|  5 |           5 | 2024-11-05 |     2000.00 |
++----+-------------+------------+-------------+
+5 rows in set (0.004 sec)
+// Output //
+
+mysql>
+mysql> -- Verify data in the order_items table
+Query OK, 0 rows affected (0.003 sec)
+
+mysql> SELECT * FROM order_items;
++----+----------+--------------------------+----------+------------+
+| id | order_id | item_name                | item_qty | item_value |
++----+----------+--------------------------+----------+------------+
+|  1 |        1 | Laptop                   |        1 |    1200.00 |
+|  2 |        1 | Wireless Mouse           |        1 |      50.00 |
+|  3 |        1 | Laptop Bag               |        1 |     100.00 |
+|  4 |        1 | USB-C Hub                |        2 |      75.00 |
+|  5 |        2 | Monitor                  |        1 |     500.00 |
+|  6 |        2 | HDMI Cable               |        2 |      15.00 |
+|  7 |        2 | Mechanical Keyboard      |        1 |     220.00 |
+|  8 |        3 | Tablet                   |        1 |     800.00 |
+|  9 |        3 | Stylus                   |        1 |     100.00 |
+| 10 |        3 | Screen Protector         |        1 |      50.00 |
+| 11 |        3 | Tablet Case              |        1 |     250.00 |
+| 12 |        4 | Headphones               |        1 |     300.00 |
+| 13 |        4 | Charging Cable           |        2 |      50.00 |
+| 14 |        5 | Desktop Computer         |        1 |    1500.00 |
+| 15 |        5 | Webcam                   |        1 |     100.00 |
+| 16 |        5 | External Hard Drive      |        1 |     300.00 |
+| 17 |        5 | Keyboard and Mouse Combo |        1 |     100.00 |
++----+----------+--------------------------+----------+------------+
+17 rows in set (0.015 sec)
+// Output //
+
+mysql> SELECT
+    ->     customers.customer_name,
+    ->     SUM(orders.order_value) AS total_order_value
+    -> FROM
+    ->     customers
+    -> INNER JOIN
+    ->     orders ON customers.id = orders.customer_id
+    -> GROUP BY
+    ->     customers.customer_name
+    -> ORDER BY
+    ->     total_order_value DESC;
++---------------+-------------------+
+| customer_name | total_order_value |
++---------------+-------------------+
+| Emma Martinez |           2000.00 |
+| Alice Johnson |           1425.00 |
+| Cynthia Lee   |           1200.00 |
+| Brian Smith   |            735.00 |
+| David Garcia  |            350.00 |
++---------------+-------------------+
+5 rows in set (0.059 sec)
+// Test //
+
+mysql> exit;
+Bye
