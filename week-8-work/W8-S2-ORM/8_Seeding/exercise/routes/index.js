@@ -3,12 +3,13 @@ const router = require("express").Router();
 const postRoutes = require("./post");
 const categoryRoutes = require("./category");
 
-// create a default route for /api
-router.get("/api", (req, res) => {
+// Default route for /api
+router.get("/", (req, res) => {
   res.json({ message: "Welcome to the API" });
 });
 
-router.use("/api/categories", categoryRoutes);
-router.use("/api/posts", postRoutes);
+// Mount routes
+router.use("/categories", categoryRoutes);
+router.use("/posts", postRoutes);
 
 module.exports = router;

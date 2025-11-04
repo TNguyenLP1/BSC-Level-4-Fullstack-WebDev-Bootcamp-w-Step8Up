@@ -7,17 +7,21 @@ const routes = require("./routes");
 
 // Initialize Express application
 const app = express();
-app.use(bodyParser.json());
 
+// Middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// Mount routes under /api
+app.use("/api", routes);
+
+// Set the port
 const PORT = process.env.PORT || 3001;
 
-// has the --rebuild parameter been passed as a command line param?
+// Check for --rebuild flag
 const rebuild = process.argv[2] === "--rebuild";
-
-// Add routes
-app.use(routes);
 
 // Sync database
 sequelize.sync({ force: rebuild }).then(() => {
-  app.listen(PORT, () => console.log("Now listening"));
+  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 });

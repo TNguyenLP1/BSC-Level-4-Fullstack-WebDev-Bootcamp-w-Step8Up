@@ -25,9 +25,13 @@ app.get("/posts", async (req, res) => {
   }
 });
 
+// Route to get a single post by ID
 app.get("/posts/:id", async (req, res) => {
   try {
     const post = await Post.findByPk(req.params.id);
+    if (!post) {
+      return res.status(404).json({ error: "Post not found" });
+    }
     res.json(post);
   } catch (error) {
     res.status(500).json({ error: "Error retrieving post" });
@@ -37,9 +41,23 @@ app.get("/posts/:id", async (req, res) => {
 // Route to update a post
 app.put("/posts/:id", async (req, res) => {
   try {
-    //TODO: destructuring the title, content, and postedBy from the request body
-    //TODO: update the post using the update method on the Post model
-    //TODO: return the updated post
+    // Destructure updated fields from request body
+    const { title, content, postedBy } = req.body;
+
+    // Update the post
+    const [updatedRows] = await Post.update(
+      { title, content, postedBy },
+      { where: { id: req.params.id } }
+    );
+
+    // If no rows were updated, post not found
+    if (updatedRows === 0) {
+      return res.status(404).json({ error: "Post not found" });
+    }
+
+    // Fetch and return the updated post
+    const updatedPost = await Post.findByPk(req.params.id);
+    res.json(updatedPost);
   } catch (error) {
     res.status(500).json({ error: "Error updating post" });
   }
@@ -48,8 +66,17 @@ app.put("/posts/:id", async (req, res) => {
 // Route to delete a post
 app.delete("/posts/:id", async (req, res) => {
   try {
-    //TODO: add delete logic here using the destroy method on the Post model
-    //TODO:return the updated post
+    // Delete the post using the destroy method
+    const deletedRows = await Post.destroy({
+      where: { id: req.params.id },
+    });
+
+    // If no rows were deleted, post not found
+    if (deletedRows === 0) {
+      return res.status(404).json({ error: "Post not found" });
+    }
+
+    res.json({ message: "Post successfully deleted" });
   } catch (error) {
     res.status(500).json({ error: "Error deleting post" });
   }

@@ -1,5 +1,4 @@
 const { Model, DataTypes, Sequelize } = require("sequelize");
-
 const sequelize = require("../config/connection");
 
 class Post extends Model {}
@@ -23,6 +22,13 @@ Post.init(
       allowNull: false,
       defaultValue: Sequelize.NOW,
     },
+    categoryId: {   // <-- add this
+      type: DataTypes.INTEGER,
+      references: {
+        model: "category",
+        key: "id",
+      },
+    },
   },
   {
     sequelize,
@@ -33,5 +39,4 @@ Post.init(
   }
 );
 
-// Export Post model
 module.exports = Post;

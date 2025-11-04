@@ -1,24 +1,26 @@
 // Import required packages
 const express = require("express");
-const { Sequelize } = require("sequelize");
-const bodyParser = require("body-parser");
-
 const sequelize = require("./config/connection");
 const routes = require("./routes");
 
-// Initialize Express application
+// Initialize Express app
 const app = express();
-app.use(bodyParser.json());
 
+// Middleware for parsing JSON and URL-encoded data
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Use routes
+app.use("/api", routes);
+
+// Determine port and rebuild flag
 const PORT = process.env.PORT || 3001;
+const rebuild = process.argv.includes("--rebuild");
 
-// has the --rebuild parameter been passed as a command line param?
-const rebuild = process.argv[2] === "--rebuild";
-
-// Add routes
-app.use(routes);
-
-// Sync database
+// Sync database and start server
 sequelize.sync({ force: rebuild }).then(() => {
-  app.listen(PORT, () => console.log("Now listening"));
+  console.log(`Database synced (rebuild: ${rebuild})`);
+  app.listen(PORT, () => {
+    console.log(`Server running at http://localhost:${PORT}`);
+  });
 });
