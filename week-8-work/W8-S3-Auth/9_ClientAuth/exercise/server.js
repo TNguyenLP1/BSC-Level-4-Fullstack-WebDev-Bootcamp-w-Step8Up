@@ -4,6 +4,7 @@ const bcrypt = require("bcryptjs");
 const { DataTypes } = require("sequelize");
 const dotenv = require("dotenv");
 const sequelize = require("./config/connection");
+const path = require("path");
 
 dotenv.config();
 const app = express();
@@ -63,16 +64,18 @@ app.post("/login", async (req, res) => {
   }
 });
 
-// protected route
-app.get("/protected", (req, res) => {
+// Protected route
+app.get("/protected", authenticateJWT, (req, res) => {
   res.json({ message: "This is a protected route", user: req.user });
 });
 
-// HINT: See W7-S3-Express/9_ServeStatic/exercise/server.js for the solution
+// Serve static files from the 'public' directory
+app.use(express.static(path.join(__dirname, "public")));
 
-// TODO: Serve static files from the 'public' directory
-
-// TODO: Handle GET request at the root route
+// Handle GET request at the root route
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.htm"));
+});
 
 // Sync database and start server
 sequelize.sync().then(() => {

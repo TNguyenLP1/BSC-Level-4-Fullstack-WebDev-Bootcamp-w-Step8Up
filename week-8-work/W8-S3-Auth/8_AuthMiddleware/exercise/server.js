@@ -3,12 +3,12 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const { DataTypes } = require("sequelize");
 const dotenv = require("dotenv");
+dotenv.config(); // must come before requiring connection.js
 const sequelize = require("./config/connection");
 
-dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3001;
-const SECRET_KEY = process.env.JWT_SECRET || "supersecretkey";
+const SECRET_KEY = process.env.JWT_SECRET || process.env.SECRET_KEY || "supersecretkey";
 
 // Define User Model
 const User = sequelize.define("User", {
@@ -20,13 +20,21 @@ app.use(express.json());
 
 // Middleware for authenticating JWT tokens
 const authenticateJWT = (req, res, next) => {
-  const token = req.header("Authorization");
-  if (!token) return res.status(403).json({ message: "Access Denied" });
+  const authHeader = req.header("Authorization");
 
-  jwt.verify(token.split(" ")[1], SECRET_KEY, (err, user) => {
-    if (err) return res.status(403).json({ message: "Invalid Token" });
-    req.user = user;
-    next();
+  if (!authHeader) {
+    return res.status(401).json({ message: "No token provided. Unauthorized" });
+  }
+
+  const token = authHeader.split(" ")[1]; // Format: "Bearer <token>"
+
+  jwt.verify(token, SECRET_KEY, (err, user) => {
+    if (err) {
+      return res.status(401).json({ message: "Invalid or expired token" });
+    }
+
+    req.user = user; // attach decoded token payload to request
+    next(); // continue to the route
   });
 };
 
@@ -57,14 +65,15 @@ app.post("/login", async (req, res) => {
       SECRET_KEY,
       { expiresIn: "1h" }
     );
+
     res.json({ token });
   } catch (error) {
     res.status(500).json({ message: "Error logging in", error });
   }
 });
 
-// TODO: Fix the route to use the authenticateJWT middleware
-app.get("/protected", (req, res) => {
+// Protected route with middleware
+app.get("/protected", authenticateJWT, (req, res) => {
   res.json({ message: "This is a protected route", user: req.user });
 });
 
