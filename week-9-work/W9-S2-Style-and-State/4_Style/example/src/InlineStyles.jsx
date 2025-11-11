@@ -1,15 +1,8 @@
-// src/InlineStyles.jsx
 import React from 'react';
+import styles from './CssModule.module.css';
 
-const InlineStyles = () => {
-  const inlineStyle = {
-    backgroundColor: 'lightblue',
-    padding: '10px',
-    borderRadius: '5px',
-    color: 'darkblue',
-  };
-
-  return <div style={inlineStyle}>This is styled using Inline Styles</div>;
+const CssModule = () => {
+  return <div className={styles.moduleBox}>This is styled using a CSS Module</div>;
 };
 
-export default InlineStyles;
+export default CssModule;
