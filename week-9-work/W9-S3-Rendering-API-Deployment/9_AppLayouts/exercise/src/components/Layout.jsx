@@ -1,56 +1,67 @@
-import NavBar from './NavBar'
+// Layout.js
+import NavBar from './NavBar';
 import Footer from './Footer';
 
+// Define the available pages and their keys
 const pages = [
   { name: 'Home', key: 'home' },
   { name: 'About', key: 'about' },
   { name: 'Contact', key: 'contact' },
-]
+];
 
 const Layout = ({ children, selectedPage, onSetPage }) => {
+  /**
+   * Props explanation:
+   * - children: this is whatever JSX you wrap inside <Layout> in App.js.
+   *   In our case, it will be <HomePage />, <AboutPage />, or <ContactPage />
+   * - selectedPage: the key of the currently selected page, e.g., 'home'
+   * - onSetPage: the function from App.js that updates the current page
+   */
 
-  // TODO: what's stored in children, selectedPage, and onSetPage?
-
+  // Function to render the sidebar links dynamically
   const renderPageLinks = () => {
-        
-    // TODO: What does this function do?
-    return pages.map(page => (
-       <li
-          key={page.key}
-          style={{
-            ...styles.sidebarLink,
-            ...(page.key === selectedPage ? styles.selected : {}),
-          }}
-          onClick={() => onSetPage(page.key)}
-        >
-          {page.name}
-        </li>
+    /**
+     * What this does:
+     * - Loops over all pages in the "pages" array
+     * - For each page, creates a <li> element
+     * - If the page key matches selectedPage, apply the "selected" style
+     * - Adds onClick to call onSetPage to switch pages
+     */
+    return pages.map((page) => (
+      <li
+        key={page.key}
+        style={{
+          ...styles.sidebarLink,
+          ...(page.key === selectedPage ? styles.selected : {}), // highlight active page
+        }}
+        onClick={() => onSetPage(page.key)}
+      >
+        {page.name}
+      </li>
     ));
-  }
-
+  };
 
   return (
     <div style={styles.container}>
-      {/* Navigation */}
+      {/* Top navigation bar */}
       <NavBar />
 
       <div style={styles.main}>
-        {/* Sidebar */}
+        {/* Sidebar with page links */}
         <aside style={styles.sidebar}>
           <ul>
-           {renderPageLinks()}
+            {renderPageLinks()}
           </ul>
         </aside>
 
-        {/* Content Area */}
+        {/* Main content area where the current page component is rendered */}
         <section style={styles.content}>
-          {children}
+          {children} {/* Injects HomePage, AboutPage, or ContactPage */}
         </section>
       </div>
 
-      {/* Footer */}
+      {/* Footer at the bottom */}
       <Footer />
-     
     </div>
   );
 };
@@ -63,9 +74,6 @@ const styles = {
     minHeight: '100vh',
     minWidth: '100vw',
   },
-  selected: {
-    backgroundColor: '#999',
-  },
   main: {
     display: 'flex',
     flex: 1,
@@ -73,7 +81,7 @@ const styles = {
   sidebar: {
     width: '200px',
     backgroundColor: '#f4f4f4',
-    padding: '5px',
+    padding: '10px',
   },
   content: {
     flex: 1,
@@ -87,9 +95,17 @@ const styles = {
   },
   sidebarLink: {
     display: 'block',
-    padding: '5px',
+    padding: '10px',
     color: '#333',
     textDecoration: 'none',
+    cursor: 'pointer',
+    borderRadius: '4px',
+    marginBottom: '5px',
+  },
+  selected: {
+    backgroundColor: '#999', // highlight for selected page
+    color: '#fff',
+    fontWeight: 'bold',
   },
 };
 
