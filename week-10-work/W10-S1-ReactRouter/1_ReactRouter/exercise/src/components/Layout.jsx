@@ -10,10 +10,16 @@ const pages = [
 const Layout = ({ children, selectedPage, onSetPage }) => {
 
   // TODO: what's stored in children, selectedPage, and onSetPage?
+  // React elements passed from App into Layout; here they are whichever page component matches the current state.
 
   const renderPageLinks = () => {
         
     // TODO: What does this function do?
+    // string identifying the current page; controls which sidebar link is marked active.
+    // onSetPage: state setter from App; executed on link click to update page state.
+    // renderPageLinks: maps the pages array into clickable list items; each item updates selectedPage via 
+    // onSetPage; establishes visual selection state by comparing page.key with selectedPage.
+
     return pages.map(page => (
        <li
           key={page.key}

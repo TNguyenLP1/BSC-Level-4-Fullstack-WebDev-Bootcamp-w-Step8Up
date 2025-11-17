@@ -10,6 +10,8 @@ function App() {
   const [page, setPage] = useState('home');
 
   // TODO: How doe sthe Layout component know which page to render?
+  // Layout doesn’t determine which page to render. App computes the page component based on page === '...'. 
+  // That computed component is injected into Layout as children.
 
   return (
     <Layout selectedPage={page} onSetPage={setPage}>
