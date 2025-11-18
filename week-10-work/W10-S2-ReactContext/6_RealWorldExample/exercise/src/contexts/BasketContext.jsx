@@ -1,11 +1,10 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useContext } from "react";
 
 export const BasketContext = createContext();
 
 export function BasketProvider({ children }) {
   const [basket, setBasket] = useState([]);
 
-  // TODO: what does this function do?
   const addToBasket = (product) => {
     setBasket((prevBasket) => {
       const item = prevBasket.find((item) => item.id === product.id);
@@ -19,7 +18,6 @@ export function BasketProvider({ children }) {
     });
   };
 
-  // TODO: what does this function do?
   const updateQuantity = (id, quantity) => {
     setBasket((prevBasket) =>
       prevBasket.map((item) =>
@@ -28,12 +26,21 @@ export function BasketProvider({ children }) {
     );
   };
 
+  // NEW: remove item completely from basket
+  const removeItem = (id) => {
+    setBasket((prevBasket) => prevBasket.filter((item) => item.id !== id));
+  };
+
   const calculateTotal = () => {
-    return basket.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2);
+    return basket
+      .reduce((total, item) => total + item.price * item.quantity, 0)
+      .toFixed(2);
   };
 
   return (
-    <BasketContext.Provider value={{ basket, addToBasket, updateQuantity, calculateTotal }}>
+    <BasketContext.Provider
+      value={{ basket, addToBasket, updateQuantity, removeItem, calculateTotal }}
+    >
       {children}
     </BasketContext.Provider>
   );

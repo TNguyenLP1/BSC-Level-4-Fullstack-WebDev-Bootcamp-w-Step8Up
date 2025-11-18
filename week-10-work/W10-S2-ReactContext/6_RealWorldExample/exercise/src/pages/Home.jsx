@@ -5,7 +5,9 @@ import { useBasket } from '../contexts/BasketContext';
 
 function Home() {
 
-    // TODO: what does this function do?
+  // This function comes from BasketContext and is used to add a product to the basket.
+  // When called, it either increases the quantity of an existing product in the basket
+  // or adds the product as a new entry with quantity set to 1.
   const { addToBasket } = useBasket();
 
   return (

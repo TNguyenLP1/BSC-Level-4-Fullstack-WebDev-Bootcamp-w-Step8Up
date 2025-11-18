@@ -5,7 +5,9 @@ import { useBasket } from '../contexts/BasketContext';
 import { products } from '../data';
 
 function Product() {
-    // TODO: what does this function do?
+  // This function (useParams) retrieves the dynamic route parameter "id" from the URL.
+  // It is then used to find the matching product from the products array by converting
+  // the id string into an integer and searching for a product with the same id.
   const { id } = useParams();
   const product = products.find((p) => p.id === parseInt(id));
   const { addToBasket } = useBasket();
